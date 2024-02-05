@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #task3 {
+        height: 40px;
+        width: 70px;
+    }
+
+    #task3_change {
+        height: 40px;
+        width: 500px;
+    }
+</style>
+
+<body>
+    <h1>Notes</h1>
+    <h3>JS object to json: ===> JSON.stringify()</h3>
+    <p id="json">
+
+    <h3>JS json to object: ===> JSON.parse()</h3>
+    <p id="obj"></p>
+
+    <p id="interval"></p>
+
+
+
+    <h1>Practice: Advance Function</h1>
+    <hr>
+    <p>1. Create a button which should grow double size after click of 2 secound.</p>
+    <button id='task3' ondblclick="clickSizeDOuble()">Click</button>
+    <br>
+    <hr>
+    <p>2. Create a button which should grow double size after click of 2 secound. (using event listener)</p>
+    <button id='task4'>Click</button>
+    <br>
+    <hr>
+    <p>3. Create an sum of elements array using for-each loop.</p>
+    <p id="for-each"></p>
+    <br>
+    <hr>
+    <p>4. Create a function that takes a number array, retun squre using map()</p>
+    <p id="function-map-squre"></p>
+    <script>
+        var person = {
+            firstName: "John",
+            lastName: "Doe",
+            age: 30,
+            isStudent: false,
+            address: {
+                street: "123 Main Street",
+                city: "Anytown",
+                country: "USA"
+            },
+            sayHello: function () {
+                console.log("Hello, my name is " + this.firstName + " " + this.lastName + ".");
+            }
+        };
+        json_ = JSON.stringify(person)
+        document.querySelector('#json').innerText = `${JSON.stringify(person)}`
+        document.querySelector('#obj').innerText = `${JSON.stringify(json_)}`
+
+        // date time
+        console.log(new Date()); //date
+        console.log(new Date().getDate()); //only date
+        console.log(new Date().getMonth()); //month
+        console.log(new Date().getFullYear());
+        console.log(new Date().getMilliseconds());
+
+
+        const element = document.getElementById("demo")
+        // .innerText = 50;
+        v = 5
+        let intervFun = () => {
+            v = v + 5
+            console.log(v, "====");
+            return v
+        }
+
+        setInterval(intervFun, 20000)
+
+        let elements = document.getElementById('interval')
+        let interval = () => elements.innerText = `Interval now datetime${new Date()}`
+        setInterval(interval, 2)
+
+        const styles = {
+            width: '150px',
+            height: '40px',
+            color: 'blue',
+            backgroundColor: 'white'
+        };
+
+
+        const propertyChange = () =>{
+            console.log("Im double ckick");
+            if (document.getElementById('task3')) {
+                document.getElementById('task3').id = 'task3_change'
+
+            } else {
+                console.log(Object.keys(styles));
+                Object.keys(styles).map(
+                    i =>
+                        // console.log(styles[i])
+                        document.getElementById('task3_change').style.cssText = "width: 150px; height: 40px; color: blue"
+                        
+                        );
+                    document.getElementById('task3_change').id = 'task3'
+            }
+        }
+
+        let clickSizeDOuble = () => {
+            setTimeout(propertyChange, 2000)
+        }
+
+
+        let task4_element = document.getElementById('task4')
+        task4_element.addEventListener('click', clickSizeDOuble)
+        // task4_element.addEventListener('dblclick', clickSizeDOuble)
+        let sum_array = 0
+        let num_array = [1,5,1,7,8,9]
+        num_array.forEach(element => {
+            sum_array = sum_array+element
+        });
+        let sum_array_ele = document.getElementById('for-each')
+        sum_array_ele.innerText = `[${num_array}] ======> ${sum_array}`
+        console.log(sum_array,"===============sum_array");
+
+
+        let num_arr = [2,5,4,3,7,9,11,12]
+        var takeNumverArray = (arr) => {
+
+            res = arr.map(i => i*i)
+            console.log(res,"=============>>");
+            return res
+
+        }
+        let function_map_squre = document.getElementById('function-map-squre')
+        function_map_squre.innerText = `[${num_arr}] ======> [${takeNumverArray(num_arr)}]`
+        console.log(takeNumverArray(num_arr),"=====kk");
+
+    </script>
+</body>
+
+</html>
